@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Log in
+{% endblock %}
+
+{% block content %}
+  <!-- Profile Card -->
+  <main class="flex justify-center items-center py-16">
+    <div class="bg-white shadow-lg rounded-lg w-full max-w-3xl p-8">
+      <!-- Header -->
+      <div class="flex items-center space-x-6 border-b pb-6">
+        <img src="https://i.pravatar.cc/150" alt="Profile Picture" class="w-32 h-32 rounded-full border-4 border-blue-500" />
+        <div>
+          <h2 class="text-3xl font-bold">Sadia Moriom</h2>
+          <p class="text-sm text-gray-500 mt-1">@sadia123</p>
+        </div>
+      </div>
+
+      <!-- Info Section -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+        <div>
+          <h3 class="text-lg font-semibold mb-2">Account Info</h3>
+          <ul class="text-gray-700 space-y-2">
+            <li>
+              <span class="font-medium">Full Name:</span> Sadia Moriom
+            </li>
+            <li>
+              <span class="font-medium">Email:</span> sadiah@example.com
+            </li>
+            <li>
+              <span class="font-medium">Phone:</span> +880 1234 567890
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-lg font-semibold mb-2">Personal Info</h3>
+          <ul class="text-gray-700 space-y-2">
+            <li>
+              <span class="font-medium">Gender:</span> Female
+            </li>
+            <li>
+              <span class="font-medium">Country:</span> Bangladesh
+            </li>
+            <li>
+              <span class="font-medium">Joined:</span> Jan 2026
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="mt-8 flex gap-4">
+        <a href="#" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Edit Profile</a>
+        <a href="#" class="bg-gray-300 text-gray-800 px-6 py-2 rounded hover:bg-gray-400">Change Password</a>
+      </div>
+    </div>
+  </main>
+{% endblock %}

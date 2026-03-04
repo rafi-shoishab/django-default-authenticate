@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Home
+{% endblock %}
+
+{% block content %}
+  <!-- HERO SECTION -->
+  <section class="bg-gray-100 py-20">
+    <div class="max-w-6xl mx-auto px-8 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6">Welcome to Authentication</h1>
+
+      <p class="text-gray-600 text-lg mb-8">Learn, create, and grow with powerful web technologies. Start your journey today and become a professional developer.</p>
+
+      <div class="space-x-4">
+        <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition">Get Started</a>
+
+        <a href="#" class="border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-6 py-3 rounded-lg transition">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section class="p-0">
+    <div class="max-w-6xl mx-auto px-8">
+      <h2 class="text-3xl font-bold text-center text-gray-800 mb-10">Our Features</h2>
+
+      <div class="grid md:grid-cols-3 gap-10 text-center">
+        <div class="p-4 shadow-lg rounded-xl">
+          <h3 class="text-xl font-semibold mb-2">Modern Design</h3>
+          <p class="text-gray-600">Clean and responsive UI built with the latest technologies.</p>
+        </div>
+
+        <div class="p-6 shadow-lg rounded-xl">
+          <h3 class="text-xl font-semibold mb-4">Fast Performance</h3>
+          <p class="text-gray-600">Optimized system for speed and smooth user experience.</p>
+        </div>
+
+        <div class="p-6 shadow-lg rounded-xl">
+          <h3 class="text-xl font-semibold mb-4">Secure Platform</h3>
+          <p class="text-gray-600">Strong security to protect your data and privacy.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
