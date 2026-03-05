@@ -1,4 +1,4 @@
-# django-authenticate
+# django-authenticate (default)
 ## deafult user model
 ```
 | Field        | Type          | Description           |
