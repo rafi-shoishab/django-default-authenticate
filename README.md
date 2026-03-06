@@ -15,3 +15,30 @@
 | date_joined  | DateTimeField | Account creation time |
 
 ```
+🏗 Project Structure Overview
+```
+django-authenticate/
+│
+├── core/
+│   ├── settings.py        # Project settings
+│   ├── urls.py            # Main URL configuration
+│   ├── wsgi.py
+│   └── asgi.py
+│
+├── accounts/              # Authentication app
+│   ├── views.py           # Login, Register, Logout logic
+│   ├── urls.py            # App URL routing
+│   ├── models.py
+│   └── migrations/
+│
+├── templates/
+│   ├── login.html
+│   ├── register.html
+│   ├── index.html
+│   └── include/
+│
+├── static/                # CSS / JS files
+│
+├── manage.py
+└── requirements.txt
+```
