@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  Log in
+Profile - {{ request.user.get_full_name }}
 {% endblock %}
 
 {% block content %}
@@ -10,10 +10,10 @@
     <div class="bg-white shadow-lg rounded-lg w-full max-w-3xl p-8">
       <!-- Header -->
       <div class="flex items-center space-x-6 border-b pb-6">
-        <img src="https://i.pravatar.cc/150" alt="Profile Picture" class="w-32 h-32 rounded-full border-4 border-blue-500" />
+        <!-- <img src="#" alt="Profile Picture" class="w-32 h-32 rounded-full border-4 border-blue-500" /> -->
         <div>
-          <h2 class="text-3xl font-bold">Sadia Moriom</h2>
-          <p class="text-sm text-gray-500 mt-1">@sadia123</p>
+          <h2 class="text-3xl font-bold"> {{ request.user.get_full_name }}</h2>
+          <p class="text-sm text-gray-500 mt-1">@{{ user.username }}</p>
         </div>
       </div>
 
@@ -23,13 +23,10 @@
           <h3 class="text-lg font-semibold mb-2">Account Info</h3>
           <ul class="text-gray-700 space-y-2">
             <li>
-              <span class="font-medium">Full Name:</span> Sadia Moriom
+              <span class="font-medium">First Name:</span> {{ user.first_name }}
             </li>
             <li>
-              <span class="font-medium">Email:</span> sadiah@example.com
-            </li>
-            <li>
-              <span class="font-medium">Phone:</span> +880 1234 567890
+              <span class="font-medium">Last Name:</span> {{ user.last_name }}
             </li>
           </ul>
         </div>
@@ -38,13 +35,7 @@
           <h3 class="text-lg font-semibold mb-2">Personal Info</h3>
           <ul class="text-gray-700 space-y-2">
             <li>
-              <span class="font-medium">Gender:</span> Female
-            </li>
-            <li>
-              <span class="font-medium">Country:</span> Bangladesh
-            </li>
-            <li>
-              <span class="font-medium">Joined:</span> Jan 2026
+              <span class="font-medium">Email:</span> {{ user.email }}
             </li>
           </ul>
         </div>
@@ -52,8 +43,8 @@
 
       <!-- Action Buttons -->
       <div class="mt-8 flex gap-4">
-        <a href="#" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Edit Profile</a>
-        <a href="#" class="bg-gray-300 text-gray-800 px-6 py-2 rounded hover:bg-gray-400">Change Password</a>
+        <a href="{% url "edit_profile" %}" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">Edit Profile</a>
+        <a href="{% url "change_password" %}" class="bg-gray-300 text-gray-800 px-6 py-2 rounded hover:bg-gray-400">Change Password</a>
       </div>
     </div>
   </main>

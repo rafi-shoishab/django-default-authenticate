@@ -14,6 +14,7 @@ def register(request):
         firstname = request.POST.get('first_name') 
         lastname = request.POST.get('last_name') 
         mail = request.POST.get('email') 
+        gender = request.POST.get('gender') 
         password = request.POST.get('password') 
         confirm_password = request.POST.get('confirm_password') 
 
@@ -38,6 +39,7 @@ def register(request):
 
         user.first_name = firstname  # user.modelname = variable  
         user.last_name = lastname 
+        user.gender = gender  
 
         user.save()
         messages.success(request, 'account created succesfully')
@@ -46,7 +48,7 @@ def register(request):
 
     return render(request, 'accounts/register.html')
 
-def signin(request):
+def log_in(request):
 
     if request.method == "POST":
         username_email = request.POST.get('username_or_email')
@@ -83,6 +85,21 @@ def signin(request):
 
     return render(request, 'accounts/login.html')
 
+def log_out(request):
+
+    logout(request)
+    messages.success(request, 'Logged out Successfully')
+
+    return redirect('login')
+
 def profile(request):
 
     return render(request, 'accounts/profile.html')
+
+def edit_profile(request):
+
+    return render(request, 'accounts/edit_profile.html')
+
+def change_password(request):
+
+    return render(request, 'accounts/change_password.html')

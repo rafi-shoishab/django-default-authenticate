@@ -1,16 +1,70 @@
 <nav class="bg-gray-900 px-8 py-4">
   <div class="flex justify-between items-center">
     <!-- Left Side Logo -->
-    <a href="{% url 'home' %}" class="text-white text-xl font-bold">MyLogo</a>
+    <a href="{% url 'home' %}" class="text-white text-xl font-bold"> 
+      MyLogo 
+    </a>
 
     <!-- Right Side Menu -->
     <div class="space-x-6 flex items-center">
-      <a href="{% url 'home' %}" class="text-white hover:text-blue-400 transition">Home</a>
-      <a href="{% url 'register' %}" class="text-white hover:text-blue-400 transition">Register</a>
+      <a href="{% url 'home' %}" class="text-white hover:text-blue-400 transition"> 
+        Home 
+      </a>
       <!-- Show when Logged In -->
-      <a href="{% url 'profile' %}" class="text-white hover:text-blue-400 transition">Profile</a>
-
-      <a href="#" class="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded-md transition">Logout</a>
+      {% if user.is_authenticated %}
+        <a href="{% url 'profile' %}" class="text-white hover:text-blue-400 transition">
+          Profile 
+        </a>
+        <a href="{% url 'logout' %}" class="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded-md transition">
+          Logout 
+        </a>
+      {% else %}
+        <a href="{% url 'register' %}" class="text-white hover:text-blue-400 transition">
+          Register 
+        </a>
+        <a href="{% url 'login' %}" class="text-white hover:text-blue-400 transition">
+          Login
+        </a>
+      {% endif %}
     </div>
   </div>
 </nav>
+
+
+{% comment %} <nav class="bg-gray-900 px-8 py-4">
+  <div class="flex justify-between items-center">
+
+    <!-- Logo -->
+    <a href="{% url 'home' %}" class="text-white text-xl font-bold">
+      MyLogo
+    </a>
+
+    <!-- Menu -->
+    <div class="space-x-6 flex items-center">
+      <a href="{% url 'home' %}" class="text-white hover:text-blue-400 transition">
+        Home
+      </a>
+
+      {% if user.is_authenticated %}
+        <a href="{% url 'profile' %}" class="text-white hover:text-blue-400 transition">
+          Profile
+        </a>
+
+        <a href="#"
+           class="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded-md transition">
+          Logout
+        </a>
+
+      {% else %}
+        <a href="{% url 'register' %}" class="text-white hover:text-blue-400 transition">
+          Register
+        </a>
+
+        <a href="{% url 'login' %}" class="text-white hover:text-blue-400 transition">
+          Login
+        </a>
+      {% endif %}
+    </div>
+
+  </div>
+</nav> {% endcomment %}
