@@ -10,7 +10,7 @@ def home(request):
 
 def register(request):
 
-    if request.method == 'POST':
+    if request.method == "POST":
         user_name = request.POST.get('user_name')  # variable = ....('html name')
         firstname = request.POST.get('first_name') 
         lastname = request.POST.get('last_name') 
@@ -83,6 +83,7 @@ def log_in(request):
             return redirect('login')'''
 
     return render(request, 'accounts/login.html')
+
 @login_required
 def log_out(request):
 
@@ -105,22 +106,48 @@ def edit_profile(request):
         pro_file.first_name = request.POST.get('first_name') # variable.default_model_name = ...('html name')
         pro_file.last_name = request.POST.get('last_name')
         pro_file.email = request.POST.get('email')
-        password = request.POST.get('password')
+        password = request.POST.get('password') # default_model_name = ...(html name)
         confirm_password = request.POST.get('confirm_password')
 
         if password != confirm_password:
-            messages.error("password unmatched")
+            messages.error(request, "password unmatched")
+            return redirect('edit_profile')
+        
+        if not pro_file.check_password(password):
+            messages.error(request, "password unmatched")
             return redirect('edit_profile')
 
         pro_file.save()
-        messages.success("profile updated successfully") 
+        messages.success(request, "profile updated successfully") 
         return redirect('profile') 
     
     context = {
         'data' : pro_file
     }
     return render(request, 'accounts/edit_profile.html', context)
+
 @login_required
 def change_password(request):
+
+    pro_file = request.user  # get the default model in a variable
+    if request.method == "POST":
+
+        old_password = request.POST.get('old_password') # default_model_name = ...(html name)
+        new_password = request.POST.get('new_password') 
+        confirm_password = request.POST.get('confirm_new_password')
+
+        if not pro_file.check_password(old_password):
+            messages.error(request, "wrong old password!")
+            return redirect('change_password') 
+        
+        if new_password != confirm_password:
+            messages.error(request, 'password did not match')
+            return redirect('change_password')
+        
+        pro_file.set_password(new_password) 
+        update_session_auth_hash(request, pro_file) # update password of the user
+        pro_file.save()
+        messages.success(request, 'password changed successfully')
+        return redirect('profile')
 
     return render(request, 'accounts/change_password.html')
