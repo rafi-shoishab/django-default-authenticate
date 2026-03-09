@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect 
 from django.contrib.auth.models import User # default model import
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash #login 
+from django.contrib.auth.decorators import login_required 
 from django.contrib import messages # show msg 
 
 # Create your views here.
@@ -10,11 +11,10 @@ def home(request):
 def register(request):
 
     if request.method == 'POST':
-        user_name = request.POST.get('user_name') 
+        user_name = request.POST.get('user_name')  # variable = ....('html name')
         firstname = request.POST.get('first_name') 
         lastname = request.POST.get('last_name') 
         mail = request.POST.get('email') 
-        gender = request.POST.get('gender') 
         password = request.POST.get('password') 
         confirm_password = request.POST.get('confirm_password') 
 
@@ -39,7 +39,7 @@ def register(request):
 
         user.first_name = firstname  # user.modelname = variable  
         user.last_name = lastname 
-        
+
         user.save()
         messages.success(request, 'account created succesfully')
         return redirect('login')
@@ -60,7 +60,7 @@ def log_in(request):
         except User.DoesNotExist:
             user_name = username_email  
         
-        user = authenticate(request, username = user_name, password = pass_word)  # variable = ...(modelname = vriable)
+        user = authenticate(request, username = user_name, password = pass_word)  # variable = ...(modelname = variable)
         
         if user is not None:
             login(request, user)
@@ -83,7 +83,7 @@ def log_in(request):
             return redirect('login')'''
 
     return render(request, 'accounts/login.html')
-
+@login_required
 def log_out(request):
 
     logout(request)
@@ -95,10 +95,32 @@ def profile(request):
 
     return render(request, 'accounts/profile.html')
 
+@login_required
 def edit_profile(request):
 
-    return render(request, 'accounts/edit_profile.html')
+    pro_file = request.user  # get the default model in a variable        
 
+    if request.method == "POST":
+
+        pro_file.first_name = request.POST.get('first_name') # variable.default_model_name = ...('html name')
+        pro_file.last_name = request.POST.get('last_name')
+        pro_file.email = request.POST.get('email')
+        password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
+
+        if password != confirm_password:
+            messages.error("password unmatched")
+            return redirect('edit_profile')
+
+        pro_file.save()
+        messages.success("profile updated successfully") 
+        return redirect('profile') 
+    
+    context = {
+        'data' : pro_file
+    }
+    return render(request, 'accounts/edit_profile.html', context)
+@login_required
 def change_password(request):
 
     return render(request, 'accounts/change_password.html')
